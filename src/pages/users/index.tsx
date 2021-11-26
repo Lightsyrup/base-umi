@@ -7,7 +7,7 @@ const Users = (searchInput, handleSearch, handleReset): any => {
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
 
-  // 外部使用数据，后期将调用数据库。data展开就是
+  // 外部使用数据，后期将调用数据库。data展开就是.使用useState，每次传输就+1
   const data = [
     {
       key: '1',
@@ -61,9 +61,7 @@ const Users = (searchInput, handleSearch, handleReset): any => {
         </Button>
       </div>
     ),
-    filterIcon: (filtered: any) => (
-      <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
-    ),
+    filterIcon: (filtered: any) => <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />,
     onFilter: (value, record) =>
       record[dataIndex]
         .toString()
