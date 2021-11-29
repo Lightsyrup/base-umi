@@ -156,18 +156,3 @@ const AddCompont: React.FC = ({
 const Add = Form.create({})(AddCompont);
 export default Add;
 
-{
-  /* 机器验证：最后做该项
-          <Form.Item label="Captcha" extra="We must make sure that your are a human.">
-            <Row gutter={8}>
-              <Col span={12}>
-                {getFieldDecorator('captcha', {
-                  rules: [{ required: true, message: 'Please input the captcha you got!' }],
-                })(<Input />)}
-              </Col>
-              <Col span={12}>
-                <Button>Get captcha</Button>
-              </Col>
-            </Row>
-          </Form.Item> */
-}

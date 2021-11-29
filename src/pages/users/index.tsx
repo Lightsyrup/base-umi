@@ -62,7 +62,7 @@ const Users = (searchInput, handleSearch, handleReset): any => {
       </div>
     ),
     filterIcon: (filtered: any) => <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />,
-    onFilter: (value, record) =>
+    onFilter: ({value, record}:any) =>
       record[dataIndex]
         .toString()
         .toLowerCase()
@@ -90,7 +90,7 @@ const Users = (searchInput, handleSearch, handleReset): any => {
     setSearchText(selectedKeys[0]);
     setSearchedColumn(dataIndex);
   };
-  handleReset = clearFilters => {
+  handleReset = (clearFilters:any) => {
     clearFilters();
     setSearchText('');
   };
