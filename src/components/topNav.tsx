@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Menu, Icon } from 'antd';
 
 const TopNav: React.FC = () => {
-  const { SubMenu } = Menu;
   const [current, setCurrent] = useState('mail');
+  const { SubMenu } = Menu;
+
   const handleClick = (e: any) => {
     console.log('click ', e);
     setCurrent('e.key');

@@ -1,5 +1,4 @@
 import React from 'react';
-import TopNav from './topNav';
 import styles from './index.css';
 
 const BasicLayout: React.FC = props => {
