@@ -1,5 +1,6 @@
 
 .normal {
+  height:calc(100% - 25px);
   font-family: Georgia, sans-serif;
   text-align: center;
 }
@@ -12,4 +13,8 @@
   padding: .6em 0;
   color: white;
   margin: 0;
+}
+
+.footer{
+  height:25px;
 }
