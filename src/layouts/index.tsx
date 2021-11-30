@@ -3,6 +3,10 @@ import Footer from '@/components/Footer';
 import styles from './index.css';
 
 const BasicLayout: React.FC = (props: any) => {
+   // 选择不同布局方案
+   const getLayout=():any=>{
+     let _pathName:string=props.location.pathname
+   }
   return (
     <>
       <div className={styles.normal}>
