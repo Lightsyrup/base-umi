@@ -22,9 +22,9 @@ const config: IConfig =  {
     {
       path: '/add',
       component: '../pages/add/index',
-      // routes: [
-      //   { path: '/', component: '../pages/index' }
-      // ]
+      routes: [
+        { path: '/', component: '../pages/index' }
+      ]
     }
   ],
   plugins: [

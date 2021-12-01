@@ -1,21 +1,19 @@
 import React from 'react';
-import Footer from '@/components/Footer';
-import styles from './index.css';
+import GeneralLayout from './general';
+import Welcome from './welcome';
+import {ADD_USER } from '@/enums';
 
 const BasicLayout: React.FC = (props: any) => {
-   // 选择不同布局方案
-   const getLayout=():any=>{
-     let _pathName:string=props.location.pathname
-   }
-  return (
-    <>
-      <div className={styles.normal}>
-        <h1 className={styles.title}>Yay! Welcome to umi!</h1>
-        {props.children}
-      </div>
-      <Footer />
-    </>
-  );
+  const getLayout = (): any => {
+    let _pathName: string = props.location.pathname;
+    switch (_pathName) {
+      case ADD_USER:
+        return <Welcome>{props.children}</Welcome>;
+      default:
+        return <GeneralLayout>{props.chilren}</GeneralLayout>;
+    }
+  };
+  return <>{getLayout()}</>;
 };
 
 export default BasicLayout;
