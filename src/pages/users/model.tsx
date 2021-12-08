@@ -15,12 +15,12 @@ export interface users {
   reducers: {
     setUsers: Reducer<userState>;
   };
-  effects:{
-      getUsers:{
-        // 发请求
-        // 将请求内容传给reducer
-      }
-  }
+//   effects:{
+//       getUsers:{
+//         // 发请求
+//         // 将请求内容传给reducer
+//       }
+//   }
 }
 
 const Model: users = {
