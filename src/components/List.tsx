@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import { Table, Input, Button, Icon } from 'antd';
+import { Table, Input, Button, Space } from 'antd';
 import Highlighter from 'react-highlight-words';
-import styles from '../index.css';
+import { SearchOutlined } from '@ant-design/icons';
 
-const Users = (searchInput, handleSearch, handleReset): any => {
+const List=({searchInput, handleSearch, handleReset}:any)=> {
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
-
-  // 外部使用数据，后期将调用数据库。data展开就是.使用useState，每次传输就+1
   const data = [
     {
       key: '1',
@@ -17,13 +15,13 @@ const Users = (searchInput, handleSearch, handleReset): any => {
     },
     {
       key: '2',
-      name: 'Jim Green',
+      name: 'Joe Black',
       age: 42,
       address: 'London No. 1 Lake Park',
     },
     {
       key: '3',
-      name: 'Joe Black',
+      name: 'Jim Green',
       age: 32,
       address: 'Sidney No. 1 Lake Park',
     },
@@ -34,7 +32,9 @@ const Users = (searchInput, handleSearch, handleReset): any => {
       address: 'London No. 2 Lake Park',
     },
   ];
-  const getColumnSearchProps = dataIndex => ({
+ 
+
+  const getColumnSearchProps = (dataIndex): any => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
       <div style={{ padding: 8 }}>
         <Input
@@ -45,31 +45,45 @@ const Users = (searchInput, handleSearch, handleReset): any => {
           value={selectedKeys[0]}
           onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
-          style={{ width: 188, marginBottom: 8, display: 'block' }}
+          style={{ marginBottom: 8, display: 'block' }}
         />
-        <Button
-          type="primary"
-          onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-          icon="search"
-          size="small"
-          style={{ width: 90, marginRight: 8 }}
-        >
-          Search
-        </Button>
-        <Button onClick={() => handleReset(clearFilters)} size="small" style={{ width: 90 }}>
-          Reset
-        </Button>
+        <Space>
+          <Button
+            type="primary"
+            onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+            icon={<SearchOutlined />}
+            size="small"
+            style={{ width: 90 }}
+          >
+            Search
+          </Button>
+          <Button onClick={() => handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+            Reset
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              confirm({ closeDropdown: false });
+              setSearchText(selectedKeys[0]), setSearchedColumn(dataIndex);
+            }}
+          >
+            Filter
+          </Button>
+        </Space>
       </div>
     ),
-    filterIcon: (filtered: any) => <Icon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />,
-    onFilter: ({value, record}:any) =>
+    filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+    onFilter: (value, record) =>
       record[dataIndex]
-        .toString()
-        .toLowerCase()
-        .includes(value.toLowerCase()),
+        ? record[dataIndex]
+            .toString()
+            .toLowerCase()
+            .includes(value.toLowerCase())
+        : '',
     onFilterDropdownVisibleChange: visible => {
       if (visible) {
-        setTimeout(() => searchInput.select());
+        setTimeout(() => searchInput.select(), 100);
       }
     },
     render: (text: any) =>
@@ -77,20 +91,20 @@ const Users = (searchInput, handleSearch, handleReset): any => {
         <Highlighter
           highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
           searchWords={[searchText]}
+          setSw
           autoEscape
-          textToHighlight={text.toString()}
+          textToHighlight={text ? text.toString() : ''}
         />
       ) : (
         text
       ),
   });
-  //   表格需要内容
   handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
-    setSearchText(selectedKeys[0]);
-    setSearchedColumn(dataIndex);
+    setSearchText(selectedKeys[0]), setSearchedColumn(dataIndex);
   };
-  handleReset = (clearFilters:any) => {
+
+  handleReset = clearFilters => {
     clearFilters();
     setSearchText('');
   };
@@ -114,15 +128,17 @@ const Users = (searchInput, handleSearch, handleReset): any => {
       dataIndex: 'address',
       key: 'address',
       ...getColumnSearchProps('address'),
+      sorter: (a, b) => a.address.length - b.address.length,
+      sortDirections: ['descend', 'ascend'],
     },
   ];
 
   return (
-    <div className={styles.normal}>
-      <h1>用户信息详情</h1>
+    <>
+      <h1>从此处显示内容</h1>
       <Table columns={columns} dataSource={data} />
-    </div>
+    </>
   );
 };
 
-export default Users;
+export default List;

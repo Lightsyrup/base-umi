@@ -5,19 +5,16 @@ const config: IConfig = {
   treeShaking: true,
   routes: [
     {
-      exact: true,
+      // exact: true,
       path: '/',
-      component: '../layouts/index',
-      routes: [{ path: '/', component: '../pages/index' }],
-    },
-    {
-      path: '/add',
-      component: '../pages/add/index',
-    },
-    {
-      path: '/users',
-      component: '../pages/users/index',
-      routes: [{ path: '/', component: '../pages/index' }],
+      component: '../layouts/index', //使用模板
+      routes: [
+        {
+          path: '/',
+          component: '../pages/welcome/index',
+        },
+        { path: '/userlist', component: '../pages/userlist/index.tsx' },
+      ],
     },
   ],
   plugins: [
