@@ -7,7 +7,7 @@ const config: IConfig = {
     {
       // exact: true,
       path: '/',
-      component: '../layouts/index', //使用模板
+      component: '../layouts/index', //模板文件位置
       routes: [
         {
           path: '/',
