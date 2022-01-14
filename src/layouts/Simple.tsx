@@ -9,8 +9,7 @@ const SimpleLayout: React.FC = (props): any => {
     <Layout className={styles.simpleLayout}>
       <Header className={styles.simpleHeader}>首页头条位置</Header>
       <Content className={styles.simpleContent}>{props.children}</Content>
-      {/* <FooterMain /> */}
-      <Footer className={styles.simpleFooter}></Footer>
+      <FooterMain />
     </Layout>
   );
 };

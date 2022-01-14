@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Footer } from 'antd/lib/layout/layout';
 import { Layout } from 'antd';
 import styles from './FooterMain.less';
 

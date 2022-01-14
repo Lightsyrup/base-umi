@@ -135,7 +135,6 @@ const List=({searchInput, handleSearch, handleReset}:any)=> {
 
   return (
     <>
-      <h1>从此处显示内容</h1>
       <Table columns={columns} dataSource={data} />
     </>
   );
