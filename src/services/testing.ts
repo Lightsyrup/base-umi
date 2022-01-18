@@ -1,5 +1,5 @@
-import request from "umi-request";
+import request from 'umi-request';
 
-export async function saySomething(){
-    return request(`'GET /api/users'`)
+export async function saySomething() {
+  return request('/api/users/1');
 }

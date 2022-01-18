@@ -3,7 +3,7 @@ export default {
     'GET /api/users': { users: [1, 2] },
   
     // GET 可忽略
-    '/api/users/1': { id: 1 },
+    '/api/users/1': { id: 10 },
   
     // 支持自定义函数，API 参考 express@4
     'POST /api/users/create': (req, res) => {
