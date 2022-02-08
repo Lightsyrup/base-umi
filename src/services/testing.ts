@@ -7,3 +7,7 @@ export async function saySomething() {
 export async function getCity() {
   return request('/api/tags');
 }
+
+export async function getUsers() {
+  return request('/api/userdatas');
+}

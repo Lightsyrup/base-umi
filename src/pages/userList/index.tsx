@@ -40,31 +40,8 @@ function mapStateToProps(state: any) {
   return {
     city: state.userList.id,
     test: state.welcome.ids,
-    list: state.userList.list[10].name,
+    list: state.userList.list[10],
   };
 }
 export default connect(mapStateToProps)(UserList);
 
-// function可以使用嗎，但不能声明类型。使用TS还是用const，将类型声明
-// function UserList({ dispatch, city }: any) {
-//   return (
-//     <>
-//       <List />
-//       <div>
-//         <h3>展示请求数据</h3>
-//         {console.log(city)}
-//         <button
-//           onClick={() => {
-//             dispatch({
-//               type: 'UserList/getCity',
-//               payload: 0,
-//             });
-//           }}
-//         >
-//           点击显示数据
-//         </button>
-//         {`${city}`}
-//       </div>
-//     </>
-//   );
-// }

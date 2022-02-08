@@ -15,7 +15,37 @@ export default {
   },
   // ----------引入mock测试
   '/api/tags': mockjs.mock({
-    // list中包含50条右边的字符串：{name:'上海市',value:66, type:1}
+    // list中包含50条字符串，{name:'上海市',value:66, type:1}
     'list|50': [{ name: '@city', 'value|1-100': 50, 'type|0-2': 1 }],
   }),
+
+  //
+  '/api/userdatas': {
+    userData: [
+      {
+        key: '1',
+        name: 'John Brown',
+        age: 32,
+        address: 'New York No. 1 Lake Park',
+      },
+      {
+        key: '2',
+        name: 'Joe Black',
+        age: 42,
+        address: 'London No. 1 Lake Park',
+      },
+      {
+        key: '3',
+        name: 'Jim Green',
+        age: 32,
+        address: 'Sidney No. 1 Lake Park',
+      },
+      {
+        key: '4',
+        name: 'Jim Red',
+        age: 32,
+        address: 'London No. 2 Lake Park',
+      },
+    ],
+  },
 };
