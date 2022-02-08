@@ -46,6 +46,12 @@ export default {
         age: 32,
         address: 'London No. 2 Lake Park',
       },
+      {
+        key: '5',
+        name: 'Jim Red',
+        age: 32,
+        address: 'London No. 2 Lake Park',
+      },
     ],
   },
 };

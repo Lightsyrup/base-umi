@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'dva';
-import { Table, Input, Button, Space } from 'antd';
+import { Table, Input, Button, Space, Pagination,Tag, Radio } from 'antd';
 import Highlighter from 'react-highlight-words';
+import { getPaginationAttribute } from '@/utils';
 import { SearchOutlined } from '@ant-design/icons';
 
 const EditUser = ({ searchInput, handleSearch, handleReset, dispatch, data }: any) => {
@@ -116,7 +117,7 @@ const EditUser = ({ searchInput, handleSearch, handleReset, dispatch, data }: an
 
   return (
     <>
-      <Table columns={columns} dataSource={data} />
+      <Table columns={columns} dataSource={data} pagination={{ position: ['bottomCenter'] }}/>
     </>
   );
 };
