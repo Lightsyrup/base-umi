@@ -19,7 +19,6 @@ export default {
     'list|50': [{ name: '@city', 'value|1-100': 50, 'type|0-2': 1 }],
   }),
 
-  //
   '/api/userdatas': {
     userData: [
       {
@@ -69,6 +68,28 @@ export default {
         name: 'Jim Red',
         age: 85,
         address: 'New York No. 2 Lake Park',
+      },
+    ],
+  },
+  '/api/masterpage': {
+    userData: [
+      {
+        key: '1',
+        name: 'John Brown',
+        age: 62,
+        address: 'New York No. 1 Lake Park',
+      },
+      {
+        key: '2',
+        name: 'Joe Black',
+        age: 40,
+        address: 'London No. 1 Lake Park',
+      },
+      {
+        key: '3',
+        name: 'Jim Green',
+        age: 50,
+        address: 'Sidney No. 1 Lake Park',
       },
     ],
   },

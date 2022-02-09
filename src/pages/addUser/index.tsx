@@ -46,24 +46,18 @@ const AddUser: React.FC = () => {
 
   return (
     <>
-      <Form {...layout} form={form} name="control-hooks" onFinish={onFinish}> 
+      <Form {...layout} form={form} name="control-hooks" onFinish={onFinish}>
         <Form.Item name="gender" label="参考型号" rules={[{ required: true }]}>
-            {/* 历史记录 */}
+          {/* 历史记录 */}
           <Select placeholder="Select a option and change input text above" onChange={onGenderChange} allowClear>
-              {/* 需要将选择的值转换成历史编号，进行循环输出 */}
+            {/* 需要将选择的值转换成历史编号，进行循环输出 */}
+            <Option value="other">无参考</Option>
             <Option value="first">first</Option>
             <Option value="second">second</Option>
-            <Option value="other">不使用历史记录</Option>
           </Select>
         </Form.Item>
-        <Form.Item name="note" label="型号" rules={[{ required: true }]}>
-          <Input />
-        </Form.Item>
-        <Form.Item name="warm" label="温度" rules={[{ required: true }]}>
-          <Input />
-        </Form.Item>
-        {/* 当选项为“other”的时候 */}
-        <Form.Item noStyle shouldUpdate={(prevValues, currentValues) => prevValues.gender !== currentValues.gender}>
+          {/* 当选项为“other”的时候，可甜内容全部清空 */}
+          <Form.Item noStyle shouldUpdate={(prevValues, currentValues) => prevValues.gender !== currentValues.gender}>
           {({ getFieldValue }) =>
             getFieldValue('gender') === 'other' ? (
               <Form.Item name="customizeGender" label="Customize Gender" rules={[{ required: true }]}>
@@ -72,6 +66,13 @@ const AddUser: React.FC = () => {
             ) : null
           }
         </Form.Item>
+        <Form.Item name="note" label="型号" rules={[{ required: true }]}>
+          <Input />
+        </Form.Item>
+        <Form.Item name="warm" label="温度" rules={[{ required: true }]}>
+          <Input />
+        </Form.Item>
+      
         {/* 表格操作 */}
         <Form.Item {...tailLayout}>
           <Button type="primary" htmlType="submit">
