@@ -49,8 +49,14 @@ const AddUser: React.FC = () => {
   };
 
   const submitForm = () => {
+    //   获取所有
     const formInfo = form.getFieldsValue(['note', 'date']);
-    console.log(formInfo);
+    // 考虑为输入的情况，当带星号的信息都存在，才能提交。否则弹出提示
+    if(formInfo.note&&formInfo.date){
+        console.log(formInfo.note);
+    }else{
+        alert('请将带星号的必填信息补充完整！')
+    }
   };
 
   return (
@@ -78,7 +84,6 @@ const AddUser: React.FC = () => {
 
         {/* 表格操作 */}
         <Form.Item {...tailLayout}>
-          {/* <Button type="primary" htmlType="submit"> */}
           <Button type="primary" onClick={submitForm}>
             Submit
           </Button>
