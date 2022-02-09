@@ -13,19 +13,23 @@ const tailLayout = {
 
 const AddUser: React.FC = () => {
   const [form] = Form.useForm();
-
+  const dateTime = new Date();
   const onGenderChange = (value: string) => {
     switch (value) {
       case 'first':
-        form.setFieldsValue({ note: 'Hi, man!' });
+        form.setFieldsValue({ date: `${dateTime.getHours()}` });
+        form.setFieldsValue({ note: 'Thank' });
         form.setFieldsValue({ warm: '100!' });
         return;
       case 'second':
-        form.setFieldsValue({ note: 'Hi, lady!' });
+        form.setFieldsValue({ date: `${dateTime.getHours()}` });
+        form.setFieldsValue({ note: 'You' });
         form.setFieldsValue({ warm: '200!' });
         return;
-      case 'other':
+      case 'reference':
+        form.setFieldsValue({ date: `${dateTime.getHours()}` });
         form.setFieldsValue({ note: '' });
+        form.setFieldsValue({ warm: '' });
     }
   };
 
@@ -44,38 +48,38 @@ const AddUser: React.FC = () => {
     });
   };
 
+  const submitForm = () => {
+    const formInfo = form.getFieldsValue(['note', 'date']);
+    console.log(formInfo);
+  };
+
   return (
     <>
       <Form {...layout} form={form} name="control-hooks" onFinish={onFinish}>
-        <Form.Item name="gender" label="参考型号" rules={[{ required: true }]}>
-          {/* 历史记录 */}
+        {/* 选择列表 */}
+        <Form.Item name="gender" label="参考板号" rules={[{ required: true }]}>
           <Select placeholder="Select a option and change input text above" onChange={onGenderChange} allowClear>
-            {/* 需要将选择的值转换成历史编号，进行循环输出 */}
-            <Option value="other">无参考</Option>
+            <Option value="reference">无参考</Option>
             <Option value="first">first</Option>
             <Option value="second">second</Option>
           </Select>
         </Form.Item>
-          {/* 当选项为“other”的时候，可甜内容全部清空 */}
-          <Form.Item noStyle shouldUpdate={(prevValues, currentValues) => prevValues.gender !== currentValues.gender}>
-          {({ getFieldValue }) =>
-            getFieldValue('gender') === 'other' ? (
-              <Form.Item name="customizeGender" label="Customize Gender" rules={[{ required: true }]}>
-                <Input />
-              </Form.Item>
-            ) : null
-          }
+
+        {/* 输入内容 */}
+        <Form.Item name="date" label="入库时间" rules={[{ required: true }]}>
+          <Input disabled />
         </Form.Item>
-        <Form.Item name="note" label="型号" rules={[{ required: true }]}>
-          <Input />
+        <Form.Item name="note" label="板号" rules={[{ required: true }]}>
+          <Input placeholder="请输入新建板号" />
         </Form.Item>
         <Form.Item name="warm" label="温度" rules={[{ required: true }]}>
           <Input />
         </Form.Item>
-      
+
         {/* 表格操作 */}
         <Form.Item {...tailLayout}>
-          <Button type="primary" htmlType="submit">
+          {/* <Button type="primary" htmlType="submit"> */}
+          <Button type="primary" onClick={submitForm}>
             Submit
           </Button>
           <Button htmlType="button" onClick={onReset}>
