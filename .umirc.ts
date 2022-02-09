@@ -15,6 +15,7 @@ const config: IConfig = {
         },
         { path: '/userlist', component: '../pages/userlist/index.tsx' }, 
         { path: '/editUser', component: '../pages/editUser/index.tsx' }, 
+        { path: '/addUser', component: '../pages/addUser/index.tsx' }, 
       ],
     },
   ],

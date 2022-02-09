@@ -4,8 +4,6 @@ import { getCity } from '@/services/testing';
 import { getUsers } from '@/services/testing';
 
 export interface editUserState {
-  id: number;
-  list: {};
   userData: null;
 }
 
@@ -18,6 +16,8 @@ export interface UserListModel {
   effects: {
     getInfo: Effect;
     getUserList: Effect;
+    setUserToList: Effect;
+    addDefaultNewUser:Effect
   };
 }
 
@@ -25,11 +25,6 @@ export interface UserListModel {
 const Model: UserListModel = {
   namespace: 'editUserState',
   state: {
-    id: 100,
-    list: {
-      value: 20,
-      type: 5,
-    },
     userData: null,
   },
   reducers: {
@@ -53,6 +48,15 @@ const Model: UserListModel = {
         payload: res,
       });
     },
+    *addDefaultNewUser(){
+      // 发送post请求，将新数据传送给数据库
+    },
+    *setUserToList(){
+        // 得到调用的数据
+        // 提取返回数据最后一条
+        // 将最后一条作为新增的内容
+        // 传输给数据库，进行更新（最新内容已经显示）
+    }
   },
 };
 
