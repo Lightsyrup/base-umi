@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Input, Button, Select } from 'antd';
+import { nanoid } from 'nanoid';
 
 const { Option } = Select;
 
@@ -14,6 +15,7 @@ const tailLayout = {
 const AddUser: React.FC = () => {
   const [form] = Form.useForm();
   const dateTime = new Date();
+  const names = ['reference', 'first', 'second'];
   const onGenderChange = (value: string) => {
     switch (value) {
       case 'first':
@@ -52,10 +54,10 @@ const AddUser: React.FC = () => {
     //   获取所有
     const formInfo = form.getFieldsValue(['note', 'date']);
     // 考虑为输入的情况，当带星号的信息都存在，才能提交。否则弹出提示
-    if(formInfo.note&&formInfo.date){
-        console.log(formInfo.note);
-    }else{
-        alert('请将带星号的必填信息补充完整！')
+    if (formInfo.note && formInfo.date) {
+      console.log(formInfo.note);
+    } else {
+      alert('请将带星号的必填信息补充完整！');
     }
   };
 
@@ -65,9 +67,13 @@ const AddUser: React.FC = () => {
         {/* 选择列表 */}
         <Form.Item name="gender" label="参考板号" rules={[{ required: true }]}>
           <Select placeholder="Select a option and change input text above" onChange={onGenderChange} allowClear>
-            <Option value="reference">无参考</Option>
-            <Option value="first">first</Option>
-            <Option value="second">second</Option>
+            {names.map(item => {
+              return (
+                <Option value={`${item}`} key={nanoid()}>
+                  {item}
+                </Option>
+              );
+            })}
           </Select>
         </Form.Item>
 

@@ -71,6 +71,7 @@ export default {
       },
     ],
   },
+  // 后续key值使用uniqueId生成
   '/api/masterpage': {
     userData: [
       {
