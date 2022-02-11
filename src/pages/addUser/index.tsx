@@ -31,19 +31,20 @@ const testInformation = {
   },
 };
 
+// type testInformation = Object[]
+
 const AddUser: React.FC = () => {
   const [form] = Form.useForm();
   const dateTime = new Date();
-  const names = ['reference', 'first', 'second'];
-  const onGenderChange = (value: string) => {  
-      switch (value){
-        case `${value}`:
-          form.setFieldsValue({ date: dateTime.getHours()});
-          form.setFieldsValue({ note: testInformation[`${value}`].note});
-          form.setFieldsValue({ warm: testInformation[`${value}`].warm });
-          return;
-      }
-
+  const names = ['reference', 'first', 'second']; //后面循环的内容
+  const onGenderChange = (value: string) => {
+    switch (value) {
+      case `${value}`:
+        form.setFieldsValue({ date: dateTime.getHours() });
+        form.setFieldsValue({ note: testInformation[`${value}`].note });
+        form.setFieldsValue({ warm: testInformation[`${value}`].warm });
+        return;
+    }
   };
 
   const onFinish = (values: any) => {
@@ -71,6 +72,15 @@ const AddUser: React.FC = () => {
       alert('请将带星号的必填信息补充完整！');
     }
   };
+  const displayOptions = (userSelect: {}) => {
+    for (let key in userSelect) {
+      return (
+        <Option value={`${key}`} key={nanoid()}>
+          {key}
+        </Option>
+      );
+    }
+  };
 
   return (
     <>
@@ -78,13 +88,15 @@ const AddUser: React.FC = () => {
         {/* 选择列表 */}
         <Form.Item name="gender" label="参考板号" rules={[{ required: true }]}>
           <Select placeholder="Select a option and change input text above" onChange={onGenderChange} allowClear>
-            {names.map(item => {
+            {/* {
+            names.map(item => {
               return (
                 <Option value={`${item}`} key={nanoid()}>
                   {item}
                 </Option>
               );
-            })}
+            })} */}
+            {displayOptions(testInformation)}
           </Select>
         </Form.Item>
 
