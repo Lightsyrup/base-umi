@@ -12,27 +12,53 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
+const testInformation = {
+  modelFirst: {
+    date: '000',
+    note: 'Good!',
+    warm: 100,
+  },
+
+  modelSecond: {
+    date: '000',
+    note: 'yes',
+    warm: 'happy',
+  },
+};
+
 const AddUser: React.FC = () => {
   const [form] = Form.useForm();
   const dateTime = new Date();
   const names = ['reference', 'first', 'second'];
-  const onGenderChange = (value: string) => {
-    switch (value) {
-      case 'first':
-        form.setFieldsValue({ date: `${dateTime.getHours()}` });
-        form.setFieldsValue({ note: 'Thank' });
-        form.setFieldsValue({ warm: '100!' });
-        return;
-      case 'second':
-        form.setFieldsValue({ date: `${dateTime.getHours()}` });
-        form.setFieldsValue({ note: 'You' });
-        form.setFieldsValue({ warm: '200!' });
-        return;
-      case 'reference':
-        form.setFieldsValue({ date: `${dateTime.getHours()}` });
-        form.setFieldsValue({ note: '' });
-        form.setFieldsValue({ warm: '' });
+  const onGenderChange = (value: string) => {  //value是可选的模板名称
+    // 根据不同的键，放入不同的内容.找到主键名，根据主键进行赋值
+// 问题在于：当下选择的主键名并不是规定的那几个
+    for(let key in testInformation){
+      switch (key){
+        case `${key}`://case后面的内容是模板选项
+          form.setFieldsValue({ date: testInformation[`${key}`].date });
+          form.setFieldsValue({ note: testInformation[`${key}`].note});
+          form.setFieldsValue({ warm: testInformation[`${key}`].warm });
+          return;
+      }
     }
+    // switch (value) {
+    //   case 'first':
+    //     form.setFieldsValue({ date: `${dateTime.getHours()}` });
+    //     form.setFieldsValue({ note: 'Thank' });
+    //     form.setFieldsValue({ warm: '100!' });
+    //     return;
+    //   case 'second':
+    //     form.setFieldsValue({ date: `${dateTime.getHours()}` });
+    //     form.setFieldsValue({ note: 'You' });
+    //     form.setFieldsValue({ warm: '200!' });
+    //     return;
+    //   case 'reference':
+    //     form.setFieldsValue({ date: `${dateTime.getHours()}` });
+    //     form.setFieldsValue({ note: '' });
+    //     form.setFieldsValue({ warm: '' });
+    // }
+
   };
 
   const onFinish = (values: any) => {
@@ -55,7 +81,7 @@ const AddUser: React.FC = () => {
     const formInfo = form.getFieldsValue(['note', 'date']);
     // 考虑为输入的情况，当带星号的信息都存在，才能提交。否则弹出提示
     if (formInfo.note && formInfo.date) {
-      console.log(formInfo.note);
+      console.log(formInfo);
     } else {
       alert('请将带星号的必填信息补充完整！');
     }
